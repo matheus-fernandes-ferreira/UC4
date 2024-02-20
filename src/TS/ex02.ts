@@ -17,11 +17,51 @@ class Livro {
     author: string;
     editora: string;
     categoria: string;
+    numeroCopias: number;
 
-    constructor( titulo: string, autor: string, editora: string, categoria: string){
+    constructor(titulo: string, autor: string, editora: string, categoria: string, numeroCopias: number) {
         this.titulo = titulo,
-        this.author = autor,
-        this.editora = editora,
-        this.categoria = categoria
+            this.author = autor,
+            this.editora = editora,
+            this.categoria = categoria,
+            this.numeroCopias = numeroCopias
     }
 }
+
+
+class Usuario {
+    nome: string;
+    endereco: any[];
+    telefone: string;
+    historioEmprestimo: any[];
+
+    constructor(nome: string, endereco: any[], telefone: string, historicoEmprestimo: any[]) {
+        this.nome = nome,
+            this.endereco = endereco,
+            this.telefone = telefone,
+            this.historioEmprestimo = historicoEmprestimo
+    }
+}
+
+class RegistroEmprestimo {
+    livro: Livro;
+    dataEmprestimo: Date;
+    dataDevolucao: Date;
+    usuario: Usuario;
+
+    constructor(livro: Livro, dataEmprestimo: Date, dataDevolucao: Date, usuario: Usuario) {
+        this.livro = livro,
+            this.dataEmprestimo = dataEmprestimo,
+            this.dataDevolucao = dataDevolucao,
+            this.usuario = usuario
+    }
+}
+
+//inicializando
+const livro1 = new Livro('Harry Potter 12', 'J.K. Rowlling', 'Roco', 'Fantasia', 50)
+const usuario1 = new Usuario('Matheus', ['Rua SENAC', 'Natal'],'558499665874', [new Date('2024-1-10'), new Date('2024-2-10')])
+const registro1 = new RegistroEmprestimo(livro1, new Date('2024-1-10'), new Date('2024-2-10'), usuario1)
+
+console.log(livro1)
+console.log(usuario1)
+console.log(registro1)
