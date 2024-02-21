@@ -1,61 +1,38 @@
+//criando a classe conta
 class Conta {
-    saldo: number;
-    tipoConta: string;
     titular: string;
+    saldo: number;
     agencia: string;
     contaCorrente: string;
     historicoTransacao: any[];
-    constructor(saldo: number, tipoConta: string, titular: string, agencia: string, contaCorrente: string, historicoTransacao: any[]) {
-        this.saldo = saldo;
-        this.tipoConta = tipoConta;
+    constructor(titular: string, saldo: number, agencia: string, contaCorrente: string, historicoTransacao: any[]) {
         this.titular = titular;
+        this.saldo = saldo;
         this.agencia = agencia;
         this.contaCorrente = contaCorrente;
         this.historicoTransacao = historicoTransacao;
     }
     mostrarDados() {
-        console.log(`saldo atual: ${this.saldo}\n Tipo de conta: ${this.tipoConta}\n
+        console.log(`saldo atual: ${this.saldo}\n
         Titular: ${this.titular} \n Agência: ${this.agencia}\n Conta Corrente: ${this.contaCorrente}\n
         Histórico de transações: ${this.historicoTransacao}`)
     }
 }
 
-class Despeza {
-    despeza: any[];
-    categoria: string
-
-    constructor(despeza: any[], categoria: string) {
-        this.despeza = despeza;
-        this.categoria = categoria;
-    }
-    mostrarDados() {
-        console.log(`Despezas: ${this.despeza}\n Categoria: ${this.categoria}`)
-    }
-}
-
-class Receita {
-    receita: number;
+class Transacao {
+    valor: number;
+    data: Date;
     categoria: string;
-
-    constructor(receita: number, categoria: string) {
-        this.receita = receita;
+    tipoTransacao: string;
+    constructor(valor: number, data: Date, tipoTransacao: string, categoria: string) {
+        this.valor = valor;
+        this.data = data;
+        this.tipoTransacao = tipoTransacao; // receita ou despesa
         this.categoria = categoria;
     }
     mostrarDados() {
-        console.log(`Receitas: ${this.receita}\n Categoria: ${this.categoria}`)
-    }
-}
-
-class RelatorioMensal {
-    gastos: Despeza;
-    ganhos: Receita;
-
-    constructor(gastos: Despeza, ganhos: Receita) {
-        this.ganhos = ganhos;
-        this.gastos = gastos
-    }
-    mostrarDados() {
-        console.log(`Ganhos do mês: ${this.ganhos}\n Gastos do mês: ${this.gastos} }`)
+        console.log(`Despesas: ${this.valor}\n Data: ${this.data}\n Tipo de transação: 
+        ${this.tipoTransacao}\n Categoria: ${ this.categoria }`)
     }
 }
 
@@ -63,8 +40,32 @@ class Planejamento {
     objetivo: string;
     valor: number;
     periodo: Date;
-    constructor(objetivo: string, valor: number,periodo: Date){
-
+    constructor(objetivo: string, valor: number, periodo: Date) {
+        this.objetivo = objetivo;
+        this.valor = valor
+        this.periodo = periodo;
+    }
+    mostrarDados() {
+        console.log(`O dinheiro será poupado para ${ this.objetivo } \n
+        Você deverá guardar ${ this.valor } reais por mês até ${ this.periodo } para atingir sua meta`)
     }
 }
 
+//inicializando
+//criando a primeira conta
+const conta1 = new Conta('Matheus Fernandes', 910, '321', '10203040', [])
+//criando a primeira transacao
+const transacao1 = new Transacao(1000, new Date('2024-2-10'), 'Receita', 'Pix recebido')
+//inserindo a transacao no historico
+conta1.historicoTransacao.push(transacao1)
+const transacao2 = new Transacao(90, new Date('2024-2-12'), 'Despesa', 'Pagamento Boleto')
+//inserindo a transacao no historico
+conta1.historicoTransacao.push(transacao2)
+
+//criando a primeira meta
+
+
+//exibir os dados
+console.log(conta1.mostrarDados())
+console.log(transacao1.mostrarDados())
+console.log(transacao2.mostrarDados())
