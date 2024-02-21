@@ -1,27 +1,59 @@
-class Funcionario {
+class DadosPessoais {
     nome: string;
+    endereco: string[];
     telefone: string;
     email: string;
-    cargo: string;
+    rg: string;
     dataNascimento: Date;
-    //método construtor
-    constructor(nome: string, telefone: string, dataNascimento: Date, email: string, cargo: string) {
+    constructor(nome: string, endereco: string[], telefone: string, email: string, rg: string, dataNascimento: Date) {
         this.nome = nome;
+        this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
-        this.cargo = cargo;
+        this.rg = rg;
         this.dataNascimento = dataNascimento;
     }
-    //método para exibir os dados ao usuario
-    mostrarDados() {
-        console.log(`Dados do funcionário \n Nome: ${this.nome}\n Telefone: ${this.telefone} \n E-mail: ${this.email} \n Cargo: ${this.cargo} \n
-        Data de Nascimento: ${this.dataNascimento.toLocaleString('pt-br')}`)
+    mostrarDadosPessoais() {
+        console.log(`
+Dados pessoais: \n Nome: ${this.nome}\n Endereço: ${this.endereco}
+Telefone: ${this.telefone}\n E-mail: ${this.email}\n RG: ${this.rg}\n Data de Nascimento: ${this.dataNascimento.toLocaleDateString('pt-br')}`)
     }
 }
-//instanciando
-const funcionario1 = new Funcionario('Matheus', '84789541221', new Date('1900-2-12'), 'matheus@gmail.com', 'desenvolvedor')
-console.log(funcionario1.mostrarDados())
 
+//a classe Funcionario herda atributos da classe DadosPessoais
+class Funcionario extends DadosPessoais {
+    cargo: string;
+    matricula: string;
+    //método construtor
+    constructor(cargo: string, matricula: string, nome: string, endereco: string[], telefone: string,
+        email: string, rg: string, dataNascimento: Date) {
+        super(nome, endereco, telefone, email, rg, dataNascimento)
+        this.cargo = cargo;
+        this.matricula = matricula;
+    }
+    //método para exibir os dados 
+    mostrarDadosFuncionario() {
+        super.mostrarDadosPessoais()
+        console.log(`Dados do funcionário: \n Matrícula: ${this.matricula}\n Cargo: ${this.cargo} `)
+    }
+}
+
+
+//a classe Paciente Herda atributos da classe DadosPessoais
+class Paciente extends DadosPessoais {
+    idade: string;
+    cpf: string;
+    constructor(nome: string, endereco: string[], telefone: string,
+        email: string, rg: string, dataNascimento: Date, idade: string, cpf: string) {
+        super(nome, endereco, telefone, email, rg, dataNascimento)
+        this.idade = idade;
+        this.cpf = cpf;
+    }
+    mostrardadosPaciente() {
+        super.mostrarDadosPessoais()
+        console.log(`Informações do paciente: \n CPF: ${this.cpf}\n Idade: ${this.idade}`)
+    }
+}
 
 class Consulta {
     paciente: Paciente;
@@ -31,42 +63,21 @@ class Consulta {
     convenio: boolean;
 
     constructor(paciente: Paciente, medico: Funcionario, dataHorario: Date, sala: string, convenio: boolean) {
-        this.paciente = paciente;''
-            this.medico = medico;
-            this.dataHorario = dataHorario;
-            this.sala = sala;
-            this.convenio = convenio;
+        this.paciente = paciente; ''
+        this.medico = medico;
+        this.dataHorario = dataHorario;
+        this.sala = sala;
+        this.convenio = convenio;
     }
-   mostrarConsulta(){
+    mostrarConsulta() {
         console.log(`Paciente ${this.paciente} \n Médico: ${this.medico} \n Data: ${this.dataHorario} \n Sala: ${this.sala} \n Convênio: ${this.convenio} `)
     }
 }
 
-class Paciente {
-    nome: string;
-    idade: string;
-    cpf: string;
-    telefone: string;
-    email: string;
-    endereco: string
-
-    constructor(nome: string, idade: string, cpf: string, telefone: string, email: string, endereco: string) {
-        this.nome = nome,
-            this.idade = idade,
-            this.cpf = cpf,
-            this.telefone = telefone,
-            this.email = email,
-            this.endereco = endereco
-    }
-    mostrardadosPaciente(){
-        console.log(`Nome: ${this.nome} \n Idade: ${this.idade} \n CPF: ${this.cpf} \n Teleofne: ${this.telefone} \n E-mail: ${this.email} \n Endereço: ${this.endereco}`)
-    }
-}
-
-
-const paciente1 = new Paciente('Valtemir', '30', '012345678910', '8498774566', 'vlimap@g.com', 'Zona Norte')
-console.log(funcionario1.mostrarDados)
 
 //instanciando
-const coconsulta1 = new Consulta(paciente1, funcionario1, new Date('2024-2-19-16:00:00'), '08', true)
-console.log(coconsulta1.mostrarConsulta() )
+const funcionario1 = new Funcionario('Médico', '4045933', 'Valtemir', ['Rua senac', 'Cidade: Natal'],'849958745122', 'valtemir@gmail.ocm', '54123569', new Date('2024-2-21'))
+funcionario1.mostrarDadosFuncionario()
+
+const paciente1 = new Paciente('Matheus', ['Neópolis', 'Zona sul'], '84996663352', 'matheus@gmal.com', '5541236', new Date('1992-1-10'), '31', '58796552100')
+paciente1.mostrardadosPaciente()

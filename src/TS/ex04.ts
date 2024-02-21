@@ -71,7 +71,6 @@ const projeto1 = new Projeto('Sistema gerenciamento de projetos',
 'Sistema criado para acompanhar o andamentos das atividades',[],[],[])
 
 const etapa1 = new Etapas('Algoritmo', new Date(2024-3-1), 'Em andamento')
-
 const tarefa1 = new Tarefa('Escrever pseudocodigo', 'Valtemir', new Date('2024-02-28'),
 'Em andamento', 'Descrever a sequencia de passos lógicos para implementar o projeto')
 
