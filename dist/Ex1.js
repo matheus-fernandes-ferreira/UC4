@@ -16,7 +16,7 @@ class DadosPessoais {
     }
     mostrarDadosPessoais() {
         console.log(`
-Dados pessoais: \n Nome: ${this.nome}\n Endereço: ${this.endereco}\n
+Dados pessoais: \n Nome: ${this.nome}\n Endereço: ${this.endereco}
 Telefone: ${this.telefone}\n E-mail: ${this.email}\n RG: ${this.rg}\n Data de Nascimento: ${this.dataNascimento.toLocaleDateString('pt-br')}`);
     }
 }

@@ -26,7 +26,7 @@ class Tarefa {
         this.descricao = descricao;
     }
     mostrarDadosTarefa() {
-        console.log(`Nome da tarefa: ${this.nome}\n Responsável: ${this.responsavel}\n Prazo: ${this.prazo}\n
+        console.log(`Nome da tarefa: ${this.nome}\n Responsável: ${this.responsavel}\n Prazo: ${this.prazo}
     Status: ${this.status}\n Descrição: ${this.descricao}`);
     }
 }

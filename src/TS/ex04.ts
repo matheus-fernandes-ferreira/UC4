@@ -1,11 +1,8 @@
 class Etapas {
-    nome: string;
-    prazo: Date;
-    status: string;
-    constructor(nome: string, prazo: Date, status: string) {
-        this.nome = nome;
-        this.prazo = prazo;
-        this.status = status;
+    constructor(
+        public nome: string,
+        public prazo: Date,
+        public status: string) {
     }
     mostrarDadosEtapa() {
         console.log(`Etapa: ${this.nome}\n Prazo final: ${this.prazo}\n Status da etapa: ${this.status}`)
@@ -13,52 +10,37 @@ class Etapas {
 }
 
 class Tarefa {
-    nome: string;
-    responsavel: string;
-    prazo: Date;
-    status: string;
-    descricao: string;
-
-    constructor(nome: string, responsavel: string, prazo: Date, status: string, descricao: string) {
-        this.nome = nome;
-        this.responsavel = responsavel;
-        this.prazo = prazo;
-        this.status = status;
-        this.descricao = descricao;
+    constructor(
+        public nome: string,
+        public responsavel: string,
+        public prazo: Date,
+        public status: string,
+        public descricao: string) {
     }
     mostrarDadosTarefa() {
-        console.log(`Nome da tarefa: ${this.nome}\n Responsável: ${this.responsavel}\n Prazo: ${this.prazo}\n
+        console.log(`Nome da tarefa: ${this.nome}\n Responsável: ${this.responsavel}\n Prazo: ${this.prazo}
     Status: ${this.status}\n Descrição: ${this.descricao}`)
     }
 }
 
 class MembroEquipe {
-    nome: string;
-    email: string;
-    cargo: string;
-
-    constructor(nome: string, email: string, cargo: string) {
-        this.nome = nome;
-        this.email = email;
-        this.cargo = cargo;
+    constructor(
+        public nome: string,
+        public email: string,
+        public cargo: string) {
     }
-    mostrarDadosMembro(){
+    mostrarDadosMembro() {
         console.log(`Membro: ${this.nome}\n E-mail: ${this.email}\n Cargo: ${this.cargo}`)
     }
 }
 
 class Projeto {
-    nome: string;
-    descricao: string;
-    equipe: string[];
-    etapas: Etapas[];
-    tarefas: Tarefa[];
-    constructor(nome: string, descricao: string, equipe: string[], etapas: Etapas[], tarefas: Tarefa[]) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.equipe = equipe;
-        this.etapas = etapas;
-        this.tarefas = tarefas
+    constructor(
+        public nome: string,
+        public descricao: string,
+        public equipe: string[],
+        public etapas: Etapas[],
+        public tarefas: Tarefa[]) {
     }
     mostrarDadosProjeto() {
         console.log(`Nome do projeto: ${this.nome}\n Descricao: ${this.descricao}\n
@@ -67,12 +49,12 @@ class Projeto {
 }
 
 //inicializando
-const projeto1 = new Projeto('Sistema gerenciamento de projetos', 
-'Sistema criado para acompanhar o andamentos das atividades',[],[],[])
+const projeto1 = new Projeto('Sistema gerenciamento de projetos',
+    'Sistema criado para acompanhar o andamentos das atividades', [], [], [])
 
-const etapa1 = new Etapas('Algoritmo', new Date(2024-3-1), 'Em andamento')
+const etapa1 = new Etapas('Algoritmo', new Date(2024 - 3 - 1), 'Em andamento')
 const tarefa1 = new Tarefa('Escrever pseudocodigo', 'Valtemir', new Date('2024-02-28'),
-'Em andamento', 'Descrever a sequencia de passos lógicos para implementar o projeto')
+    'Em andamento', 'Descrever a sequencia de passos lógicos para implementar o projeto')
 
 const membro1 = new MembroEquipe('Valtemir', 'vlimap@gmail.com', 'Chefe')
 
