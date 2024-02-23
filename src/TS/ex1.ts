@@ -1,32 +1,30 @@
-class DadosPessoais {
-    
+export class DadosPessoais {
     constructor(
         public nome: string,
-        public endereco: string[], 
-        public telefone: string, 
-        public  email: string, 
-        public  rg: string, 
+        public endereco: string[],
+        public telefone: string,
+        public email: string,
+        public rg: string,
         public dataNascimento: Date) {
     }
     mostrarDadosPessoais() {
-        console.log(`
-Dados pessoais: \n Nome: ${this.nome}\n Endereço: ${this.endereco}
+        console.log(`Dados pessoais: \n Nome: ${this.nome}\n Endereço: ${this.endereco}
 Telefone: ${this.telefone}\n E-mail: ${this.email}\n RG: ${this.rg}\n Data de Nascimento: ${this.dataNascimento.toLocaleDateString('pt-br')}`)
     }
 }
 
 //a classe Funcionario herda atributos da classe DadosPessoais
-class Funcionario extends DadosPessoais {
+export class Funcionario extends DadosPessoais {
 
     //método construtor
     constructor(
-        public cargo: string, 
-        public matricula: string, 
         nome: string,
-        endereco: string[], 
+        public cargo: string,
+        public matricula: string,
+        endereco: string[],
         telefone: string,
-        email: string, 
-        rg: string, 
+        email: string,
+        rg: string,
         dataNascimento: Date) {
         super(nome, endereco, telefone, email, rg, dataNascimento)
     }
@@ -41,16 +39,15 @@ class Funcionario extends DadosPessoais {
 //a classe Paciente Herda atributos da classe DadosPessoais
 class Paciente extends DadosPessoais {
     constructor(
-        nome: string, 
-        endereco: string[], 
+        nome: string,
+        endereco: string[],
         telefone: string,
-        email: string, 
-        rg: string, 
-        dataNascimento: Date, 
-        public idade: string, 
+        email: string,
+        rg: string,
+        dataNascimento: Date,
+        public idade: string,
         public cpf: string) {
         super(nome, endereco, telefone, email, rg, dataNascimento)
-
     }
     mostrardadosPaciente() {
         super.mostrarDadosPessoais()
@@ -58,6 +55,7 @@ class Paciente extends DadosPessoais {
     }
 }
 
+/*
 class Consulta {
     paciente: Paciente;
     medico: Funcionario;
@@ -65,7 +63,8 @@ class Consulta {
     sala: string;
     convenio: boolean;
 
-    constructor(paciente: Paciente, medico: Funcionario, dataHorario: Date, sala: string, convenio: boolean) {
+    constructor(
+        paciente: Paciente, medico: Funcionario, dataHorario: Date, sala: string, convenio: boolean) {
         this.paciente = paciente; ''
         this.medico = medico;
         this.dataHorario = dataHorario;
@@ -76,11 +75,13 @@ class Consulta {
         console.log(`Paciente ${this.paciente} \n Médico: ${this.medico} \n Data: ${this.dataHorario} \n Sala: ${this.sala} \n Convênio: ${this.convenio} `)
     }
 }
+*/
 
-
+/*
 //instanciando
 const funcionario1 = new Funcionario('Médico', '4045933', 'Valtemir', ['Rua senac', 'Cidade: Natal'],'849958745122', 'valtemir@gmail.ocm', '54123569', new Date('2024-2-21'))
-funcionario1.mostrarDadosFuncionario()
+///funcionario1.mostrarDadosFuncionario()
 
 const paciente1 = new Paciente('Matheus', ['Neópolis', 'Zona sul'], '84996663352', 'matheus@gmal.com', '5541236', new Date('1992-1-10'), '31', '58796552100')
-paciente1.mostrardadosPaciente()
+//paciente1.mostrardadosPaciente()
+*/

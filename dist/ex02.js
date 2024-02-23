@@ -31,13 +31,12 @@ class Usuario {
         console.log(`Nom: ${this.nome} \n Endereço: ${this.endereco} \n Telefone: ${this.telefone} \n Histórico de empréstimos: ${this.historicoEmprestimo}`);
     }
 }
-class RegistroEmprestimo {
-    livro;
+class Emprestimo extends Livro {
     dataEmprestimo;
     dataDevolucao;
     usuario;
-    constructor(livro, dataEmprestimo, dataDevolucao, usuario) {
-        this.livro = livro;
+    constructor(titulo, autor, editora, categoria, numeroCopias, dataEmprestimo, dataDevolucao, usuario) {
+        super(titulo, autor, editora, categoria, numeroCopias);
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
         this.usuario = usuario;
@@ -46,10 +45,11 @@ class RegistroEmprestimo {
         console.log(`Livro: ${this.livro} \n Data de empréstimo: ${this.dataEmprestimo} \n Data de devolução: ${this.dataDevolucao} \n Usuário: ${this.usuario}`);
     }
 }
-//inicializando
-const livro1 = new Livro('Harry Potter 12', 'J.K. Rowlling', 'Roco', 'Fantasia', 50);
-const usuario1 = new Usuario('Matheus', ['Rua SENAC', 'Natal'], '558499665874', [new Date('2024-1-10'), new Date('2024-2-10')]);
-const registro1 = new RegistroEmprestimo(livro1, new Date('2024-1-10'), new Date('2024-2-10'), usuario1);
-console.log(livro1.mostrarDados());
-console.log(usuario1.mostrarDados());
-console.log(registro1.mostrarDados());
+const livro1 = new Livro("O Senhor dos Anéis: A Sociedade do Anel", "J.R.R. Tolkien", "HarperCollins", "Fantasia", 10);
+livro1.mostrarDados();
+const usuario1 = new Usuario("João Silva", ["Rua das Flores, 123", "São Paulo", "SP"], "(11) 9999-8888", []);
+usuario1.mostrarDados();
+const dataEmprestimo = new Date();
+const dataDevolucao = new Date(dataEmprestimo.getFullYear(), dataEmprestimo.getMonth() + 1, dataEmprestimo.getDate() + 7);
+const emprestimo1 = new Emprestimo("O Hobbit", "J.R.R. Tolkien", "HarperCollins", "Fantasia", 5, dataEmprestimo, dataDevolucao, usuario1);
+emprestimo1.mostrarDados();

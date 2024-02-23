@@ -74,7 +74,7 @@ class contaCorrente extends Conta {
 class contaPoupanca extends Conta {
     constructor(
         agencia: string,
-        public operacao: string;
+        public operacao: string,
         titular: string,
         saldo: number,
         historicoTransacao: any[]) {

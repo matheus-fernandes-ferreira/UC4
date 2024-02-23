@@ -1,4 +1,6 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Funcionario = exports.DadosPessoais = void 0;
 class DadosPessoais {
     nome;
     endereco;
@@ -20,6 +22,7 @@ Dados pessoais: \n Nome: ${this.nome}\n Endereço: ${this.endereco}
 Telefone: ${this.telefone}\n E-mail: ${this.email}\n RG: ${this.rg}\n Data de Nascimento: ${this.dataNascimento.toLocaleDateString('pt-br')}`);
     }
 }
+exports.DadosPessoais = DadosPessoais;
 //a classe Funcionario herda atributos da classe DadosPessoais
 class Funcionario extends DadosPessoais {
     cargo;
@@ -36,6 +39,7 @@ class Funcionario extends DadosPessoais {
         console.log(`Dados do funcionário: \n Matrícula: ${this.matricula}\n Cargo: ${this.cargo} `);
     }
 }
+exports.Funcionario = Funcionario;
 //a classe Paciente Herda atributos da classe DadosPessoais
 class Paciente extends DadosPessoais {
     idade;
@@ -68,8 +72,11 @@ class Consulta {
         console.log(`Paciente ${this.paciente} \n Médico: ${this.medico} \n Data: ${this.dataHorario} \n Sala: ${this.sala} \n Convênio: ${this.convenio} `);
     }
 }
+/*
 //instanciando
-const funcionario1 = new Funcionario('Médico', '4045933', 'Valtemir', ['Rua senac', 'Cidade: Natal'], '849958745122', 'valtemir@gmail.ocm', '54123569', new Date('2024-2-21'));
-funcionario1.mostrarDadosFuncionario();
-const paciente1 = new Paciente('Matheus', ['Neópolis', 'Zona sul'], '84996663352', 'matheus@gmal.com', '5541236', new Date('1992-1-10'), '31', '58796552100');
-paciente1.mostrardadosPaciente();
+const funcionario1 = new Funcionario('Médico', '4045933', 'Valtemir', ['Rua senac', 'Cidade: Natal'],'849958745122', 'valtemir@gmail.ocm', '54123569', new Date('2024-2-21'))
+///funcionario1.mostrarDadosFuncionario()
+
+const paciente1 = new Paciente('Matheus', ['Neópolis', 'Zona sul'], '84996663352', 'matheus@gmal.com', '5541236', new Date('1992-1-10'), '31', '58796552100')
+//paciente1.mostrardadosPaciente()
+*/ 

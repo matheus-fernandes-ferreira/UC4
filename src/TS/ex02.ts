@@ -1,5 +1,4 @@
 class Livro {
-
     constructor(
         public titulo: string,
         public autor: string,
@@ -11,7 +10,6 @@ class Livro {
         console.log(`Título: ${this.titulo} \n Autor: ${this.autor} \n Editora: ${this.editora} \n Categoria: ${this.categoria} \n Número de cópias: ${this.numeroCopias} `)
     }
 }
-
 
 class Usuario {
     constructor(
@@ -25,23 +23,54 @@ class Usuario {
     }
 }
 
-class RegistroEmprestimo {
+class Emprestimo extends Livro {
     constructor(
-        public livro: Livro,
+        titulo: string,
+        autor: string,
+        editora: string,
+        categoria: string,
+        numeroCopias: number,
         public dataEmprestimo: Date,
         public dataDevolucao: Date,
         public usuario: Usuario) {
+        super(titulo, autor, editora, categoria, numeroCopias)
     }
     mostrarDados() {
         console.log(`Livro: ${this.livro} \n Data de empréstimo: ${this.dataEmprestimo} \n Data de devolução: ${this.dataDevolucao} \n Usuário: ${this.usuario}`)
     }
 }
 
-//inicializando
-const livro1 = new Livro('Harry Potter 12', 'J.K. Rowlling', 'Roco', 'Fantasia', 50)
-const usuario1 = new Usuario('Matheus', ['Rua SENAC', 'Natal'], '558499665874', [new Date('2024-1-10'), new Date('2024-2-10')])
-const registro1 = new RegistroEmprestimo(livro1, new Date('2024-1-10'), new Date('2024-2-10'), usuario1)
+const livro1 = new Livro(
+    "O Senhor dos Anéis: A Sociedade do Anel",
+    "J.R.R. Tolkien",
+    "HarperCollins",
+    "Fantasia",
+    10
+);
 
-console.log(livro1.mostrarDados())
-console.log(usuario1.mostrarDados())
-console.log(registro1.mostrarDados())
+livro1.mostrarDados();
+
+const usuario1 = new Usuario(
+    "João Silva",
+    ["Rua das Flores, 123", "São Paulo", "SP"],
+    "(11) 9999-8888",
+    []
+);
+
+usuario1.mostrarDados();
+
+const dataEmprestimo = new Date();
+const dataDevolucao = new Date(dataEmprestimo.getFullYear(), dataEmprestimo.getMonth() + 1, dataEmprestimo.getDate() + 7);
+
+const emprestimo1 = new Emprestimo(
+    "O Hobbit",
+    "J.R.R. Tolkien",
+    "HarperCollins",
+    "Fantasia",
+    5,
+    dataEmprestimo,
+    dataDevolucao,
+    usuario1
+);
+
+emprestimo1.mostrarDados();
