@@ -2,30 +2,34 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ex1_1 = require("./ex1");
 class Desenvolvedor extends ex1_1.Funcionario {
-    constructor(cargo, matricula, nome, endereco, telefone, email, rg, dataNascimento) {
-        super(cargo, matricula, nome, endereco, telefone, email, rg, dataNascimento);
+    linguagens;
+    frameworks;
+    constructor(nome, endereco, telefone, email, rg, dataNascimento, cargo, matricula, linguagens, frameworks) {
+        super(nome, endereco, telefone, email, rg, dataNascimento, cargo, matricula);
+        this.linguagens = linguagens;
+        this.frameworks = frameworks;
     }
     mostrarDados() {
         super.mostrarDadosFuncionario();
+        console.log(`Linguagens: ${this.linguagens}\n Frameworks: ${this.frameworks} `);
     }
 }
 class Backend extends Desenvolvedor {
-    linguagens;
-    framework;
-    constructor(nome, cargo, matricula, endereco, telefone, email, rg, dataNascimento, linguagens, framework) {
-        super(nome, cargo, matricula, endereco, telefone, email, rg, dataNascimento);
-        this.linguagens = linguagens;
-        this.framework = framework;
+    bancoDeDados;
+    constructor(nome, endereco, telefone, email, rg, dataNascimento, cargo, matricula, linguagens, frameworks, bancoDeDados) {
+        super(nome, endereco, telefone, email, rg, dataNascimento, cargo, matricula, linguagens, frameworks);
+        this.bancoDeDados = bancoDeDados;
     }
     mostrarDados() {
         super.mostrarDados();
-        console.log(`Linguagens: ${this.linguagens}\n Frameworks: ${this.framework}`);
+        console.log(`Banco de dados: ${this.bancoDeDados}`);
     }
 }
-class Frontend extends Backend {
+class Frontend extends Desenvolvedor {
     modelidade;
-    constructor(nome, cargo, matricula, endereco, telefone, email, rg, dataNascimento, linguagens, framework, modelidade) {
-        super(nome, cargo, matricula, endereco, telefone, email, rg, dataNascimento, linguagens, framework);
+    constructor(nome, endereco, telefone, email, rg, dataNascimento, cargo, matricula, linguagens, framework, modelidade //mobile, web, desktop
+    ) {
+        super(nome, endereco, telefone, email, rg, dataNascimento, cargo, matricula, linguagens, framework);
         this.modelidade = modelidade;
     }
     mostrarDados() {
@@ -33,27 +37,53 @@ class Frontend extends Backend {
         console.log(`Modalidades: ${this.modelidade}`);
     }
 }
-class Fullstack extends Frontend {
+class Fullstack extends Desenvolvedor {
     habilidades;
-    constructor(nome, cargo, matricula, endereco, telefone, email, rg, dataNascimento, linguagens, framework, modelidade, //mobile, web, desktop
-    habilidades) {
-        super(nome, cargo, matricula, endereco, telefone, email, rg, dataNascimento, linguagens, framework, modelidade);
+    constructor(nome, endereco, telefone, email, rg, dataNascimento, cargo, matricula, linguagens, framework, habilidades) {
+        super(nome, endereco, telefone, email, rg, dataNascimento, cargo, matricula, linguagens, framework);
         this.habilidades = habilidades;
     }
     mostrarDados() {
-        super.mostrarDados;
-        console.log(`Habilidades: ${this.habilidades}`);
+        super.mostrarDados();
+        console.log(`Habilidades: ${this.habilidades}}`);
     }
 }
-const backendDev = new Backend("João Silva", "Desenvolvedor Backend", "123456", ["Rua das Flores, 123"], "(11) 9999-8888", "joao.silva@email.com", "123456789", new Date(1990, 10, 1), // Assuming correct Date format
-["Java", "Python"], ["Spring Boot", "Django"]);
-backendDev.mostrarDados();
-const frontendDev = new Frontend("Maria Souza", "Desenvolvedora Frontend", "654321", ["Avenida Paulista, 500"], "(11) 8888-9999", "maria.souza@email.com", "987654321", new Date(1995, 5, 15), // Assuming correct Date format
-["JavaScript", "TypeScript"], ["React", "Vue.js"], ["Web"] // Specifying "Web" as the development modality
+const devBackend1 = new Backend("Ana Silva", // Nome
+["Rua das Flores, 123", "Bairro Primavera"], // Endereço
+"(11) 98765-4321", // Telefone
+"ana.silva@email.com", // Email
+"12.345.678-9", // RG
+new Date("1995-05-20"), // Data de Nascimento
+"Desenvolvedora Backend", // Cargo
+"54321", // Matrícula
+["Java", "JavaScript"], // Linguagens
+["Spring Boot", "React"], // Frameworks
+["MySQL", "MongoDB"] // Bancos de dados
 );
-frontendDev.mostrarDados();
-const fullstackDev = new Fullstack("Pedro Santos", "Desenvolvedor Fullstack", "987654", ["Rua das Acácias, 20"], "(12) 3333-2222", "pedro.santos@email.com", "123789456", new Date(2000, 1, 2), // Assuming correct Date format
-["JavaScript", "Python", "Java"], ["React", "Spring Boot", "Django"], ["Web", "Mobile"], // Specifying development modalities
-["Agile methodologies", "Testing", "Version control"] // Adding specific fullstack developer skills
+devBackend1.mostrarDados();
+const devFrontend1 = new Frontend("João Souza", // Nome
+["Rua dos Girassóis, 456", "Bairro Sol Nascente"], // Endereço
+"(11) 91234-5678", // Telefone
+"joao.souza@email.com", // Email
+"98.765.432-1", // RG
+new Date("2000-10-10"), // Data de Nascimento
+"Desenvolvedor Frontend", // Cargo
+"98765", // Matrícula
+["HTML", "CSS", "JavaScript"], // Linguagens
+["React", "Vue.js"], // Frameworks
+["web", "mobile"] // Modalidades
 );
-fullstackDev.mostrarDados();
+devFrontend1.mostrarDados();
+const devFullstack1 = new Fullstack("Mariana Oliveira", // Nome
+["Avenida Brasil, 789", "Bairro Centro"], // Endereço
+"(11) 95678-1234", // Telefone
+"mariana.oliveira@email.com", // Email
+"01.234.567-8", // RG
+new Date("1992-07-15"), // Data de Nascimento
+"Desenvolvedora Fullstack", // Cargo
+"123456", // Matrícula
+["Java", "JavaScript", "Python"], // Linguagens
+["Spring Boot", "React", "Django"], // Frameworks
+["Back-end", "Front-end", "Testes"] // Habilidades
+);
+devFullstack1.mostrarDados();
