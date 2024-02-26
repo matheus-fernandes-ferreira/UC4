@@ -4,10 +4,18 @@ class Livro {
         public autor: string,
         public editora: string,
         public categoria: string,
-        public numeroCopias: number) {
+        private numeroCopias: number) {
     }
     mostrarDados() {
-        console.log(`Título: ${this.titulo} \n Autor: ${this.autor} \n Editora: ${this.editora} \n Categoria: ${this.categoria} \n Número de cópias: ${this.numeroCopias} `)
+        console.log(`Informações do livro\n Título: ${this.titulo} \n Autor: ${this.autor} 
+        Editora: ${this.editora} \n Categoria: ${this.categoria}
+        Número de cópias: ${this.numeroCopias} `)
+    }
+    getNumCopias(): number {
+        return this.numeroCopias
+    }
+    setNumCopias(numeroCopias: number): void {
+        this.numeroCopias = numeroCopias
     }
 }
 
@@ -16,10 +24,12 @@ class Usuario {
         public nome: string,
         public endereco: any[],
         public telefone: string,
-        public historicoEmprestimo: any[]) {
+        private historicoEmprestimo: any[]) {
     }
     mostrarDados() {
-        console.log(`Nom: ${this.nome} \n Endereço: ${this.endereco} \n Telefone: ${this.telefone} \n Histórico de empréstimos: ${this.historicoEmprestimo}`)
+        console.log(`Nom: ${this.nome} \n Endereço: ${this.endereco}
+        Telefone: ${this.telefone}
+        Histórico de empréstimos: ${this.historicoEmprestimo}`)
     }
 }
 
@@ -36,9 +46,22 @@ class Emprestimo extends Livro {
         super(titulo, autor, editora, categoria, numeroCopias)
     }
     mostrarDados() {
-        console.log(`Livro: ${this.livro} \n Data de empréstimo: ${this.dataEmprestimo} \n Data de devolução: ${this.dataDevolucao} \n Usuário: ${this.usuario}`)
+        console.log('Informações do empréstimo')
+        super.mostrarDados()
+        console.log(`Data de empréstimo: ${this.dataEmprestimo}
+        Data de devolução: ${this.dataDevolucao}
+        Usuário: ${usuario1.nome})`)
     }
 }
+
+const usuario1 = new Usuario(
+    "João Silva",
+    ["Rua das Flores, 123", "São Paulo", "SP"],
+    "(11) 9999-8888",
+    []
+)
+usuario1.mostrarDados();
+
 
 const livro1 = new Livro(
     "O Senhor dos Anéis: A Sociedade do Anel",
@@ -46,18 +69,9 @@ const livro1 = new Livro(
     "HarperCollins",
     "Fantasia",
     10
-);
+)
 
 livro1.mostrarDados();
-
-const usuario1 = new Usuario(
-    "João Silva",
-    ["Rua das Flores, 123", "São Paulo", "SP"],
-    "(11) 9999-8888",
-    []
-);
-
-usuario1.mostrarDados();
 
 const dataEmprestimo = new Date();
 const dataDevolucao = new Date(dataEmprestimo.getFullYear(), dataEmprestimo.getMonth() + 1, dataEmprestimo.getDate() + 7);
@@ -71,6 +85,5 @@ const emprestimo1 = new Emprestimo(
     dataEmprestimo,
     dataDevolucao,
     usuario1
-);
-
+)
 emprestimo1.mostrarDados();

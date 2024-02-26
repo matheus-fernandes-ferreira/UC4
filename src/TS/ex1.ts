@@ -1,15 +1,23 @@
-export class DadosPessoais {
+//************** */
+//classe abstrata não pode ser instanciada, porém serve como modelo para outras classes
+export abstract class DadosPessoais {
     constructor(
         public nome: string,
         public endereco: string[],
         public telefone: string,
-        public email: string,
+        private email: string,  //atributo privado impede que o atributo seja chamado e alterado pelas classes filhas
         public rg: string,
         public dataNascimento: Date) {
     }
     mostrarDadosPessoais() {
-        console.log(`Dados pessoais: \n Nome: ${this.nome}\n Endereço: ${this.endereco}
-Telefone: ${this.telefone}\n E-mail: ${this.email}\n RG: ${this.rg}\n Data de Nascimento: ${this.dataNascimento.toLocaleDateString('pt-br \n')}`)
+        
+    }
+    //metodos get e set: utilizado para para pegar e alterar atributos privados
+    getEmail(): string{
+        return this.email
+    }
+    setEmail (email: string): void{
+        this.email = email
     }
 }
 
@@ -30,9 +38,12 @@ export class Funcionario extends DadosPessoais {
     //método para exibir os dados 
     mostrarDadosFuncionario() {
         console.log(`Dados do funcionário\n`)
-        super.mostrarDadosPessoais()
-        console.log(`\nMatrícula: ${this.matricula}\n Cargo: ${this.cargo}\n `)
+        console.log(`Nome: ${this.nome}\n Endereço: ${this.endereco}
+Telefone: ${this.telefone}\n E-mail: ${super.getEmail()}\n RG: ${this.rg}\n Data de Nascimento: ${this.dataNascimento.toLocaleDateString('pt-br')}`)
+        console.log(`Matrícula: ${this.matricula}\n Cargo: ${this.cargo}\n `)
+        
     }
+
 }
 
 
@@ -81,6 +92,8 @@ const funcionario01 = new Funcionario(
     "Clínico Geral", // Cargo
     "123456" // Matrícula
 )
+//funcionario01.setEmail('matheusff@gmail.com')
+//console.log(funcionario01.getEmail())
 
 funcionario01.mostrarDadosFuncionario()
 

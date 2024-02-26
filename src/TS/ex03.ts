@@ -1,5 +1,5 @@
 //criando a classe conta
-class Cliente {
+abstract class Cliente {
     constructor(
         public Nome: string,
         public endereco: string[],
@@ -8,10 +8,10 @@ class Cliente {
     }
     mostrarDadosCliente() {
         console.log(`Dados do cliente:
-        Nome: ${this.Nome}\n Endereço: ${this.endereco}\n Telefone: ${this.telefone}\n E-mail: ${this.email}`)
+        Nome: ${this.Nome}\n Endereço: ${this.endereco}
+        Telefone: ${this.telefone}\n E-mail: ${this.email}`)
     }
 }
-
 
 class ClientePessoaFisica extends Cliente {
     constructor(
@@ -43,45 +43,61 @@ class clientePessoaJuridica extends Cliente {
     }
 }
 
-class Conta {
+abstract class Conta {
     constructor(
-        public agencia: string,
-        public titular: string,
-        public saldo: number,
-        public historicoTransacao: any[]) {
+        protected agencia: string,
+        protected titular: string,
+        private saldo: number,
+        private historicoTransacao: any[]) {
     }
     mostrarDadosConta() {
-        console.log(`saldo atual: ${this.saldo}\n
-        Titular: ${this.titular} \n Agência: ${this.agencia}\n Conta Corrente: ${this.contaCorrente}\n
+        console.log(`saldo atual: ${this.saldo}
+        Titular: ${this.titular}
+        Agência: ${this.agencia}
         Histórico de transações: ${this.historicoTransacao}`)
     }
+    getSaldo(){
+        return this.saldo
+    }
+    setSaldo(saldo: number): void{
+        this.saldo = saldo
+    }
+    getHistorico(){
+        return this.historicoTransacao
+    }
+    setHistorico(historicoTransacao: any[]): void{
+        this.historicoTransacao = historicoTransacao
+    }
 }
+
 class contaCorrente extends Conta {
     constructor(
         agencia: string,
-        public contaCorrente: string,
         titular: string,
         saldo: number,
-        historicoTransacao: any[]) {
+        historicoTransacao: any[],
+        public contaCorrente: string) {
         super(agencia, titular, saldo, historicoTransacao)
     }
     mostrarDadosContaCorrente() {
         super.mostrarDadosConta()
         console.log(`Conta Corrente: ${this.contaCorrente}`)
+        console.log(`Histórico de transações: ${super.getHistorico}`)
     }
 }
 
 class contaPoupanca extends Conta {
     constructor(
         agencia: string,
-        public operacao: string,
         titular: string,
         saldo: number,
-        historicoTransacao: any[]) {
+        historicoTransacao: any[],
+        public operacao: string,) {
         super(agencia, titular, saldo, historicoTransacao)
     }
     mostrarDadosPoupanca() {
         super.mostrarDadosConta()
+        console.log(`Saldo: ${super.getSaldo()}\n `)
         console.log(`Operação: ${this.operacao}`)
     }
 }
@@ -89,12 +105,12 @@ class contaPoupanca extends Conta {
 class ContaSalario extends contaCorrente {
     constructor(
         agencia: string,
-        contaCorrente: string,
         titular: string,
         saldo: number,
         historicoTransacao: any[],
+        contaCorrente: string,
         public empresador: string[]) {
-        super(agencia, contaCorrente, titular, saldo, historicoTransacao)
+        super(agencia, titular, saldo, historicoTransacao, contaCorrente, )
     }
     mostrarDadosContaSalario() {
         super.mostrarDadosContaCorrente()
@@ -102,15 +118,33 @@ class ContaSalario extends contaCorrente {
     }
 }
 
-class Transacao {
+abstract class Transacao {
     constructor(
-        public valor: number,
-        public data: Date,
-        public categoria: string) {
+        private valor: number,
+        private data: Date,
+        private categoria: string) {
     }
     mostrarDadosTransacao() {
         console.log(`Dados da transação:
-        Valor: ${this.valor.toLocaleString("pr-BR",{style:"currency",currency:"BRL"})}\n Data: ${this.data}\n Categoria: ${this.categoria}`)
+        Valor: ${this.valor.toLocaleString("pr-BR", { style: "currency", currency: "BRL" })}\n Data: ${this.data}\n Categoria: ${this.categoria}`)
+    }
+    getValor(){
+        return this.valor
+    }
+    setValor(valor: number): void{
+        this.valor = valor        
+    }
+    getData(){
+        return this.data
+    }
+    setData(data: Date): void{
+        this.data = data      
+    }
+    getCategoria(){
+        return this.categoria
+    }
+    setCategoria(categoria: string): void{
+        this.categoria = categoria        
     }
 }
 
@@ -121,14 +155,16 @@ class Receita extends Transacao {
         categoria: string,) {
         super(valor, data, categoria)
     }
+
     mostrarDadosReceita() {
-        console.log(`Receita \n`)
-        super.mostrarDadosTransacao()
+        console.log(`Receita \n 
+        Valor: ${super.getValor()}\n 
+        Data: ${super.getData()}\n 
+        Categoria: ${super.getCategoria()}`)
     }
 }
 
-const receita1 = new Receita(100, new Date('2024-5-1'), 'Boleto') 
-receita1.mostrarDadosReceita()
+
 
 class Despesa extends Transacao {
     constructor(
@@ -151,26 +187,81 @@ class Planejamento {
     }
     mostrarDados() {
         console.log(`O dinheiro será poupado para ${this.objetivo}
-        Você deverá guardar ${this.valor.toLocaleString("pr-BR",{style:"currency",currency:"BRL"})} reais por mês até ${this.periodo} para atingir sua meta`)
+        Você deverá guardar ${this.valor.toLocaleString("pr-BR", { style: "currency", currency: "BRL" })} reais por mês até ${this.periodo} para atingir sua meta`)
     }
 }
 
-/*inicializando
-//criando a primeira conta
-const conta1 = new Conta('Matheus Fernandes', 910, '321', '10203040', [])
-//criando a primeira transacao
-const transacao1 = new Transacao(1000, new Date('2024-2-10'), 'Receita', 'Pix recebido')
-//inserindo a transacao no historico
-conta1.historicoTransacao.push(transacao1)
-const transacao2 = new Transacao(90, new Date('2024-2-12'), 'Despesa', 'Pagamento Boleto')
-//inserindo a transacao no historico
-conta1.historicoTransacao.push(transacao2)
+//inicializando
+const clientePF = new ClientePessoaFisica(
+    "João Silva",
+    "12345678900",
+    ["Rua A, 123", "Cidade, Estado"],
+    "(11) 9999-8888",
+    "joaosilva@email.com",
+  );
 
-//criando a primeira meta
+  const clientePJ = new clientePessoaJuridica(
+    "Empresa X",
+    "12345678901234",
+    ["Rua B, 456", "Cidade, Estado"],
+    "(11) 9876-5432",
+    "empresax@email.com",
+  );
+  
+  clientePJ.mostrarDadosCliente();
+
+  const contaCorrente1 = new contaCorrente(
+    "0001",
+    "João Silva",
+    1000.00,
+    [],
+    "123456-7",
+  );
+  contaCorrente1.mostrarDadosContaCorrente();
 
 
-//exibir os dados
-console.log(conta1.mostrarDados())
-console.log(transacao1.mostrarDados())
-console.log(transacao2.mostrarDados())
-*/
+const contaPoupanca1 = new contaPoupanca(
+  "0002",
+  "Maria Oliveira",
+  500.00,
+  [],
+  "Poupança",
+);
+
+contaPoupanca1.mostrarDadosPoupanca();
+
+const contaSalario1 = new ContaSalario(
+    "0003",
+    "Pedro Souza",
+    2000.00,
+    [],
+    "123456-8",
+    ["Empresa Y"],
+  );
+  
+  contaSalario1.mostrarDadosContaSalario();
+
+  const receita1 = new Receita(
+    500.00,
+    new Date("2024-02-26"),
+    "Salário",
+  );
+  
+  receita1.mostrarDadosReceita();
+
+  const despesa1 = new Despesa(
+    200.00,
+    new Date("2024-02-26"),
+    "Supermercado",
+  );
+  
+  despesa1.mostrarDadosDespesa();
+
+  const planejamento1 = new Planejamento(
+    "Viagem internacional",
+    10000.00,
+    new Date("2025-12-31"),
+  );
+  
+  planejamento1.mostrarDados();
+
