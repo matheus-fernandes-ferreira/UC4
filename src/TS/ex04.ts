@@ -1,11 +1,15 @@
 class Etapas {
     constructor(
         public nome: string,
+        public descricao: string,
         public prazo: Date,
-        public status: string) {
+        public status: string) {    //em iniciar, andamento, concluido,
     }
     mostrarDadosEtapa() {
-        console.log(`Etapa: ${this.nome}\n Prazo final: ${this.prazo}\n Status da etapa: ${this.status}`)
+        console.log(`Etapa: ${this.nome}\n 
+        Descrição: ${this.descricao}
+        Prazo final: ${this.prazo}\n 
+        Status da etapa: ${this.status}`)
     }
 }
 
@@ -18,8 +22,12 @@ class Tarefa {
         public descricao: string) {
     }
     mostrarDadosTarefa() {
-        console.log(`Nome da tarefa: ${this.nome}\n Responsável: ${this.responsavel}\n Prazo: ${this.prazo}
-    Status: ${this.status}\n Descrição: ${this.descricao}`)
+        console.log(`
+        Nome da tarefa: ${this.nome}
+        Responsável: ${this.responsavel}
+        Prazo: ${this.prazo}
+        Status: ${this.status}
+        Descrição: ${this.descricao}`)
     }
 }
 
@@ -30,7 +38,9 @@ class MembroEquipe {
         public cargo: string) {
     }
     mostrarDadosMembro() {
-        console.log(`Membro: ${this.nome}\n E-mail: ${this.email}\n Cargo: ${this.cargo}`)
+        console.log(`Membro: ${this.nome}
+        E-mail: ${this.email}
+        Cargo: ${this.cargo}`)
     }
 }
 
@@ -43,8 +53,12 @@ class Projeto {
         public tarefas: Tarefa[]) {
     }
     mostrarDadosProjeto() {
-        console.log(`Nome do projeto: ${this.nome}\n Descricao: ${this.descricao}\n
-        Equipe Responsável: ${this.equipe}\n Etapas: ${this.etapas}\n Tarefas: ${this.tarefas}`)
+        console.log(`
+        Nome do projeto: ${this.nome}
+        Descricao: ${this.descricao}\n
+        Equipe Responsável: ${this.equipe}
+        Etapas: ${this.etapas}
+        Tarefas: ${this.tarefas}`)
     }
 }
 
@@ -52,9 +66,13 @@ class Projeto {
 const projeto1 = new Projeto('Sistema gerenciamento de projetos',
     'Sistema criado para acompanhar o andamentos das atividades', [], [], [])
 
-const etapa1 = new Etapas('Algoritmo', new Date(2024 - 3 - 1), 'Em andamento')
-const tarefa1 = new Tarefa('Escrever pseudocodigo', 'Valtemir', new Date('2024-02-28'),
-    'Em andamento', 'Descrever a sequencia de passos lógicos para implementar o projeto')
+const etapa1 = new Etapas('Algoritmo', 'descrição da etapa', new Date(2024 - 3 - 1), 'Em andamento')
+const tarefa1 = new Tarefa(
+    'Escrever pseudocodigo',
+    'Valtemir', 
+    new Date('2024-02-28'),
+    'Em andamento',
+    'Descrever a sequencia de passos lógicos para implementar o projeto')
 
 const membro1 = new MembroEquipe('Valtemir', 'vlimap@gmail.com', 'Chefe')
 
@@ -62,4 +80,4 @@ projeto1.equipe.push(membro1.nome)
 projeto1.etapas.push(etapa1)
 projeto1.tarefas.push(tarefa1)
 
-console.log(projeto1.mostrarDadosProjeto())
+projeto1.mostrarDadosProjeto()

@@ -13,7 +13,7 @@ class Livro {
         this.numeroCopias = numeroCopias;
     }
     mostrarDados() {
-        console.log(`Título: ${this.titulo} \n Autor: ${this.autor} 
+        console.log(`Informações do livro\n Título: ${this.titulo} \n Autor: ${this.autor} 
         Editora: ${this.editora} \n Categoria: ${this.categoria}
         Número de cópias: ${this.numeroCopias} `);
     }
@@ -52,10 +52,11 @@ class Emprestimo extends Livro {
         this.usuario = usuario;
     }
     mostrarDados() {
+        console.log('Informações do empréstimo');
         super.mostrarDados();
         console.log(`Data de empréstimo: ${this.dataEmprestimo}
         Data de devolução: ${this.dataDevolucao}
-        Usuário: ${this.usuario}`);
+        Usuário: ${usuario1.nome})`);
     }
 }
 const usuario1 = new Usuario("João Silva", ["Rua das Flores, 123", "São Paulo", "SP"], "(11) 9999-8888", []);

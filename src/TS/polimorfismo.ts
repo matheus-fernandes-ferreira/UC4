@@ -1,4 +1,4 @@
-import { Funcionario } from "./ex1";
+/* import { Funcionario } from "./ex1";
 
 class Desenvolvedor extends Funcionario {
     constructor(
@@ -134,4 +134,4 @@ const devFullstack1 = new Fullstack(
     ["Back-end", "Front-end", "Testes"] // Habilidades
 )
 
-devFullstack1.mostrarDados()
+devFullstack1.mostrarDados() */

@@ -1,15 +1,20 @@
 "use strict";
 class Etapas {
     nome;
+    descricao;
     prazo;
     status;
-    constructor(nome, prazo, status) {
+    constructor(nome, descricao, prazo, status) {
         this.nome = nome;
+        this.descricao = descricao;
         this.prazo = prazo;
         this.status = status;
     }
     mostrarDadosEtapa() {
-        console.log(`Etapa: ${this.nome}\n Prazo final: ${this.prazo}\n Status da etapa: ${this.status}`);
+        console.log(`Etapa: ${this.nome}\n 
+        Descrição: ${this.descricao}
+        Prazo final: ${this.prazo}\n 
+        Status da etapa: ${this.status}`);
     }
 }
 class Tarefa {
@@ -26,8 +31,12 @@ class Tarefa {
         this.descricao = descricao;
     }
     mostrarDadosTarefa() {
-        console.log(`Nome da tarefa: ${this.nome}\n Responsável: ${this.responsavel}\n Prazo: ${this.prazo}
-    Status: ${this.status}\n Descrição: ${this.descricao}`);
+        console.log(`
+        Nome da tarefa: ${this.nome}
+        Responsável: ${this.responsavel}
+        Prazo: ${this.prazo}
+        Status: ${this.status}
+        Descrição: ${this.descricao}`);
     }
 }
 class MembroEquipe {
@@ -40,7 +49,9 @@ class MembroEquipe {
         this.cargo = cargo;
     }
     mostrarDadosMembro() {
-        console.log(`Membro: ${this.nome}\n E-mail: ${this.email}\n Cargo: ${this.cargo}`);
+        console.log(`Membro: ${this.nome}
+        E-mail: ${this.email}
+        Cargo: ${this.cargo}`);
     }
 }
 class Projeto {
@@ -57,16 +68,20 @@ class Projeto {
         this.tarefas = tarefas;
     }
     mostrarDadosProjeto() {
-        console.log(`Nome do projeto: ${this.nome}\n Descricao: ${this.descricao}\n
-        Equipe Responsável: ${this.equipe}\n Etapas: ${this.etapas}\n Tarefas: ${this.tarefas}`);
+        console.log(`
+        Nome do projeto: ${this.nome}
+        Descricao: ${this.descricao}\n
+        Equipe Responsável: ${this.equipe}
+        Etapas: ${this.etapas}
+        Tarefas: ${this.tarefas}`);
     }
 }
 //inicializando
 const projeto1 = new Projeto('Sistema gerenciamento de projetos', 'Sistema criado para acompanhar o andamentos das atividades', [], [], []);
-const etapa1 = new Etapas('Algoritmo', new Date(2024 - 3 - 1), 'Em andamento');
+const etapa1 = new Etapas('Algoritmo', 'descrição da etapa', new Date(2024 - 3 - 1), 'Em andamento');
 const tarefa1 = new Tarefa('Escrever pseudocodigo', 'Valtemir', new Date('2024-02-28'), 'Em andamento', 'Descrever a sequencia de passos lógicos para implementar o projeto');
 const membro1 = new MembroEquipe('Valtemir', 'vlimap@gmail.com', 'Chefe');
 projeto1.equipe.push(membro1.nome);
 projeto1.etapas.push(etapa1);
 projeto1.tarefas.push(tarefa1);
-console.log(projeto1.mostrarDadosProjeto());
+projeto1.mostrarDadosProjeto();
