@@ -1,4 +1,4 @@
-class Etapas {
+/*class Etapas {
     constructor(
         public nome: string,
         public descricao: string,

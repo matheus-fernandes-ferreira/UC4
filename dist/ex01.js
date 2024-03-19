@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const nome = document.getElementById('nome').value;
             const email = document.getElementById('email').value;
             const telefone = document.getElementById('telefone').value;
-            const dataerrada = document.getElementById('dataNascimento').value;
+            const dataerrada = document.getElementById('dataNascimento').value; //data com formato americano
             const endereco = document.getElementById('endereco').value;
             const cpf = document.getElementById('cpf').value;
             const genero = document.getElementById('genero').value;
